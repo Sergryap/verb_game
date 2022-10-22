@@ -11,28 +11,14 @@ logger = logging.getLogger(__name__)
 
 
 def detect_intent_texts(project_id, session_id, msg, language_code):
-    """Returns the result of detect intent with texts as inputs.
-
-    Using the same `session_id` between requests allows continuation
-    of the conversation."""
-
+    """Получение ответа от Dialogflow"""
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
     print("Session path: {}\n".format(session))
     text_input = dialogflow.TextInput(text=msg, language_code=language_code)
     query_input = dialogflow.QueryInput(text=text_input)
-    response = session_client.detect_intent(
-        request={"session": session, "query_input": query_input}
-    )
-    print("=" * 20)
-    print("Query text: {}".format(response.query_result.query_text))
-    print(
-        "Detected intent: {} (confidence: {})\n".format(
-            response.query_result.intent.display_name,
-            response.query_result.intent_detection_confidence,
-        )
-    )
-    print("Fulfillment text: {}\n".format(response.query_result.fulfillment_text))
+    response = session_client.detect_intent(request={"session": session, "query_input": query_input})
+    return response.query_result.fulfillment_text
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -43,13 +29,13 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Отправляет тоже сообщение пользователю"""
-    update.message.reply_text(update.message.text)
-    detect_intent_texts(
-        project_id='verb-game-366116',
+    answer = detect_intent_texts(
+        project_id='elevated-oven-366303',
         session_id=update.effective_user.id,
         msg=update.message.text,
         language_code='ru-RU'
     )
+    update.message.reply_text(answer)
 
 
 def main() -> None:
@@ -62,7 +48,7 @@ def main() -> None:
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
 
     updater.start_polling()
-    # updater.idle()
+    updater.idle()
 
 
 if __name__ == '__main__':
