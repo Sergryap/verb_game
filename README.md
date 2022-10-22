@@ -63,6 +63,7 @@ PROJECT_ID=<Id проекта в Google Cloud>
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/xxxxxxxxxxxx.iam.gserviceaccount.com"
 }
 ```
+Файлы `.profile` и `Procfile` необходимы для деплоя на сервие [Heroku](https://heroku.com)
 
 
 
