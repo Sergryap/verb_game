@@ -26,7 +26,7 @@ def dialog_flow(update: Update, context: CallbackContext) -> None:
         session_id=update.effective_user.id,
         msg=update.message.text,
         language_code='ru-RU'
-    )
+    )[0]
     update.message.reply_text(answer)
 
 

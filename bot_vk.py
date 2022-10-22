@@ -8,17 +8,19 @@ from google_methods.detect_intent import detect_intent_texts
 
 def dialog_flow(event, vk_api, env):
     """Отправляет сообщение пользователю от Dialogflow"""
-    answer = detect_intent_texts(
+    answer, understand = detect_intent_texts(
         project_id=env('PROJECT_ID'),
         session_id=event.user_id,
         msg=event.text,
         language_code='ru-RU'
     )
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=answer,
-        random_id=random.randint(1, 1000)
-    )
+    # если бот понял
+    if understand:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=answer,
+            random_id=random.randint(1, 1000)
+        )
 
 
 def main():
