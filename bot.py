@@ -18,6 +18,7 @@ def detect_intent_texts(project_id, session_id, msg, language_code):
     text_input = dialogflow.TextInput(text=msg, language_code=language_code)
     query_input = dialogflow.QueryInput(text=text_input)
     response = session_client.detect_intent(request={"session": session, "query_input": query_input})
+
     return response.query_result.fulfillment_text
 
 
@@ -28,9 +29,11 @@ def start(update: Update, context: CallbackContext) -> None:
 
 
 def echo(update: Update, context: CallbackContext) -> None:
-    """Отправляет тоже сообщение пользователю"""
+    """Отправляет сообщение пользователю от Dialogflow"""
+    env = Env()
+    env.read_env()
     answer = detect_intent_texts(
-        project_id='elevated-oven-366303',
+        project_id=env('PROJECT_ID'),
         session_id=update.effective_user.id,
         msg=update.message.text,
         language_code='ru-RU'
