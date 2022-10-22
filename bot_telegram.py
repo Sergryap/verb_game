@@ -28,7 +28,7 @@ def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(fr'Здравствуйте, {user.full_name}!')
 
 
-def echo(update: Update, context: CallbackContext) -> None:
+def dialog_flow(update: Update, context: CallbackContext) -> None:
     """Отправляет сообщение пользователю от Dialogflow"""
     env = Env()
     env.read_env()
@@ -48,7 +48,7 @@ def main() -> None:
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dialog_flow))
 
     updater.start_polling()
     updater.idle()
