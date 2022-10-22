@@ -47,7 +47,7 @@ GOOGLE_APPLICATION_CREDENTIALS=<Путь до файла в формате json 
 PROJECT_ID=<Id проекта в Google Cloud>
 ```
 
-В Google Cloud в разделе **IAM&Admin>Service accounts** для проекта необходимо получить файл в формате json с ключами доступа и разместить его по пути, указанному в GOOGLE_APPLICATION_CREDENTIALS.
+В Google Cloud в разделе **[IAM&Admin>Service accounts](https://console.cloud.google.com/iam-admin/serviceaccounts)** для проекта необходимо получить файл в формате json с ключами доступа и разместить его по пути, указанному в GOOGLE_APPLICATION_CREDENTIALS.
 <br>Файл должен иметь следующий вид:
 ```
 {
