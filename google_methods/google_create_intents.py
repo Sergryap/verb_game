@@ -2,9 +2,15 @@ import json
 
 from google.cloud import dialogflow
 from environs import Env
+from typing import Union
 
 
-def create_intent(project_id, display_name, training_phrases_parts, message_texts):
+def create_intent(
+        project_id: str,
+        display_name: str,
+        training_phrases_parts: Union[list, tuple],
+        message_texts: Union[list, tuple]
+) -> None:
     """Create an intent of the given intent type."""
     intents_client = dialogflow.IntentsClient()
     parent = dialogflow.AgentsClient.agent_path(project_id)
@@ -29,7 +35,7 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     print('Intent created: {}'.format(response))
 
 
-def create_intents(file_phrases, project_id):
+def create_intents(file_phrases: str, project_id: str) -> None:
     """Создание intents на основе списка фраз и ответов из файла"""
     with open(file_phrases, 'r') as f:
         file = f.read()
@@ -44,7 +50,7 @@ def create_intents(file_phrases, project_id):
         )
 
 
-def main():
+def main() -> None:
     env = Env()
     env.read_env()
     create_intents('google_methods/questions.json', env('PROJECT_ID'))

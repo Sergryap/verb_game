@@ -3,7 +3,9 @@ import random
 import logging
 
 from vk_api.longpoll import VkLongPoll, VkEventType
+from vk_api.vk_api import VkApiMethod
 from environs import Env
+
 from google_methods.detect_intent import detect_intent_texts
 from logger import BotLogsHandler
 from time import sleep
@@ -11,7 +13,7 @@ from time import sleep
 logger = logging.getLogger('telegram_logging')
 
 
-def dialog_flow(event, vk_api, env):
+def dialog_flow(event, vk_api: VkApiMethod, env: Env) -> None:
     """Отправляет сообщение пользователю от Dialogflow"""
 
     answer, understand = detect_intent_texts(
@@ -27,15 +29,22 @@ def dialog_flow(event, vk_api, env):
             message=answer,
             random_id=random.randint(1, 1000)
         )
+    # иначе, отправляем сообщения админам
+    else:
+        vk_api.messages.send(
+            user_ids=env('ADMINS_VK'),
+            message=f'Сообщение от пользователя https://vk.com/id{event.user_id}:\n"{event.text}"',
+            random_id=random.randint(1, 1000)
+        )
 
 
-def main():
+def main() -> None:
     env = Env()
     env.read_env()
 
     logger.addHandler(BotLogsHandler(
         token=env('TOKEN_TG_LOG'),
-        chat_id=env('CHAT_ID')
+        chat_id=env('CHAT_ID_LOG')
     ))
 
     while True:
