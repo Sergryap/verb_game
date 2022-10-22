@@ -1,2 +1,1 @@
-bot-vk: python3 bot-vk.py
-bot-tg: python3 bot-tg.py
+bot: python3 bot-vk.py | python3 bot-tg.py
