@@ -32,7 +32,7 @@
 
    ***detect_intent.py*** - получение ответного сообщения от сервиса Dialogflow на сообщение пользователя
 
-   ***google_create_intents.py*** - загрузка обучающих фраз из [json-файла](https://github.com/Sergryap/verb_game/blob/master/google_methods/questions.json) с ответами и создание intents на их основе
+   ***create_intents.py*** - загрузка обучающих фраз из [json-файла](https://github.com/Sergryap/verb_game/blob/master/google_methods/questions.json) с ответами и создание intents на их основе
    
 ### Необходимые переменные окружения и файлы:
 
