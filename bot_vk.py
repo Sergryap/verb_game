@@ -1,12 +1,13 @@
 import vk_api as vk
 import random
+
 from vk_api.longpoll import VkLongPoll, VkEventType
 from environs import Env
-from bot_telegram import detect_intent_texts
+from google_methods.detect_intent import detect_intent_texts
 
 
 def dialog_flow(event, vk_api, env):
-
+    """Отправляет сообщение пользователю от Dialogflow"""
     answer = detect_intent_texts(
         project_id=env('PROJECT_ID'),
         session_id=event.user_id,

@@ -44,9 +44,11 @@ def create_intents(file_phrases, project_id):
         )
 
 
-if __name__ == '__main__':
+def main():
     env = Env()
     env.read_env()
-    create_intents('questions.json', env('PROJECT_ID'))
+    create_intents('google_methods/questions.json', env('PROJECT_ID'))
 
 
+if __name__ == '__main__':
+    main()
