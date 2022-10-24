@@ -93,6 +93,14 @@ source venv/bin/activate
 #### Запустите бота для tg и vk:
 `python3 bot_tg.py | python3 bot_vk.py`
 
+![Screenshot from 2022-10-24 19-55-21](https://user-images.githubusercontent.com/99894266/197557684-d10825b1-2be8-4768-8202-cffa774347c0.png)
+
+#### После запуска ботов вам придут сообщения от логгера в Tg:
+
+![Screenshot from 2022-10-24 19-08-07](https://user-images.githubusercontent.com/99894266/197558118-61fbdbca-c2df-4e5e-a820-8552f5236608.png)
+
+
+
 
 
 
