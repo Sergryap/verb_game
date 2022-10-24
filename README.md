@@ -64,6 +64,47 @@ PROJECT_ID=<Id проекта в Google Cloud>
 }
 ```
 Файлы `.profile` и `Procfile` необходимы для деплоя на сервие [Heroku](https://heroku.com)
+***
+## Пример установки
+#### Загрузите репозиторий проекта:
+`git clone https://github.com/Sergryap/verb_game.git`
+#### Создайте и активируйте виртуальное окружение в корневой папке проекта:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+#### Установите необходимые зависимости:
+`pip install -r requirements.txt`
+
+![Screenshot from 2022-10-24 18-58-41](https://user-images.githubusercontent.com/99894266/197549304-f233ad0a-7d59-4047-94b9-4106f775d5be.png)
+#### Создайте в корне проекта файл `.env` и запишите в него необходимые ключи:
+`nano .env`
+
+#### Разместите файл json с ключами доступа в корне проекта:
+
+![Screenshot from 2022-10-24 19-06-28](https://user-images.githubusercontent.com/99894266/197549928-3257a86c-b917-4902-a129-b437c19c6501.png)
+
+#### Чтобы запустить тренировку бота выполните команду:
+`python3 google_methods/create_intents.py`
+
+Этой командой создадутся intents в сервие DialogFlow на основании данных файла `/google_methods/questions.json`
+
+#### Запустите бота для tg и vk:
+`python3 bot_tg.py | python3 bot_vk.py`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
