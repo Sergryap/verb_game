@@ -6,7 +6,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from environs import Env
 from google_methods.detect_intent import detect_intent_texts
 from logger import BotLogsHandler
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
 logger = logging.getLogger('telegram_logging')
 
 
@@ -29,6 +29,8 @@ def dialog_flow(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
     env = Env()
     env.read_env()
 
