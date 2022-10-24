@@ -38,7 +38,7 @@
 
 Для работы программы необходимо создать файл `.env` в корне проекта, содержащий переменные окружения:
 ```
-TOKEN_VK=<Ключ доступа для группы ботом Vk>
+TOKEN_VK=<Ключ доступа для группы с ботом Vk>
 TOKEN_TG=<Токен от основного бота Tg>
 TOKEN_TG_LOG=<Токен от бота Tg для отправки сообщений от логгера>
 CHAT_ID_LOG=<Id чата Tg для получения сообщений от логгера>
@@ -70,6 +70,7 @@ PROJECT_ID=<Id проекта в Google Cloud>
 `git clone https://github.com/Sergryap/verb_game.git`
 #### Создайте и активируйте виртуальное окружение в корневой папке проекта:
 ```
+cd verb_game/
 python3 -m venv venv
 source venv/bin/activate
 ```
@@ -87,7 +88,7 @@ source venv/bin/activate
 #### Чтобы запустить тренировку бота выполните команду:
 `python3 google_methods/create_intents.py`
 
-Этой командой создадутся intents в сервие DialogFlow на основании данных файла `/google_methods/questions.json`
+Этой командой создадутся Intents в сервие DialogFlow на основании данных файла `/google_methods/questions.json`
 
 #### Запустите бота для tg и vk:
 `python3 bot_tg.py | python3 bot_vk.py`
