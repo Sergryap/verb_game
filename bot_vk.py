@@ -22,14 +22,12 @@ def dialog_flow(event, vk_api: VkApiMethod, env: Env) -> None:
         msg=event.text,
         language_code='ru-RU'
     )
-    # если бот понял
     if understand:
         vk_api.messages.send(
             user_id=event.user_id,
             message=answer,
             random_id=random.randint(1, 1000)
         )
-    # иначе, отправляем сообщения админам
     else:
         vk_api.messages.send(
             user_ids=env('ADMINS_VK'),
